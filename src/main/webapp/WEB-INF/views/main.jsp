@@ -123,6 +123,7 @@ b{
 }
 </style>
 	<title>main</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 
@@ -135,7 +136,7 @@ b{
 				<button>왕복</button><br/>
 			</div>
 			<div id="schedule">
-				<form action="">
+				<form id="searchForm">
 					<div id="area">
 						<select name="start">
 							<option>출발지</option>
@@ -180,7 +181,7 @@ b{
 						<option>일반석</option>
 						<option>비즈니스</option>
 					</select><br>
-					<input type="submit" id="search" value="항공권 검색"/>
+					<input type="button" id="search" value="항공권 검색" onclick="goSearch()"/>
 					
 				</form>
 			</div>
@@ -205,4 +206,36 @@ b{
 
 
 </body>
+<script type="text/javascript">
+	function goSearch(){
+		
+		var formData = $('#searchForm');
+		
+		$.ajax({
+			url :'ticketResult.do' ,
+			type : 'post',
+			dataType : 'json',
+			success: function (data) {
+				// 전송 후 성공 시 실행 코드
+				console.log(data);
+			},
+			error: function (e) {
+				// 전송 후 에러 발생 시 실행 코드
+				console.log("ERROR : ", e);
+			}
+			
+		});
+	}
+
+
+
+
+
+
+
+
+
+
+
+</script>
 </html>
